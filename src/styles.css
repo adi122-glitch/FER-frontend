@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --color-canvas: #f2e7cb;
+  --color-surface: #fff9ec;
+  --color-alt: #eadbb8;
+  --color-warm: #f7d99b;
+  --color-sage: #e1ead8;
+  --color-primary: #24301f;
+  --color-body: #394235;
+  --color-muted: #746d5d;
+  --color-deep: #4f7047;
+  --color-brand: #94b38a;
+  --color-mint: #c9d9be;
+  --color-gold: #eebf43;
+  --color-gold-soft: #f5d681;
+  --color-copper: #c54f2d;
+  --color-border: #dfcfaa;
+  --color-border-strong: #bfa978;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-anim > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 0.7s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.hero-anim > *:nth-child(1) { animation-delay: .08s; }
+.hero-anim > *:nth-child(2) { animation-delay: .20s; }
+.hero-anim > *:nth-child(3) { animation-delay: .32s; }
+.hero-anim > *:nth-child(4) { animation-delay: .44s; }
+.hero-anim > *:nth-child(5) { animation-delay: .56s; }
+.hero-anim > *:nth-child(6) { animation-delay: .68s; }
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .hero-anim > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
