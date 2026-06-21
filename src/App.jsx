@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Check, Menu, Phone, Play, Star, X } from 'lucide-react';
 import portraitImage from '../picture.jpeg';
+import logoImage from '../logo.png';
 
 const navLinks = [
   ['Home', '#'],
@@ -102,7 +103,7 @@ function App() {
   useReveal();
 
   return (
-    <div className="min-h-screen bg-canvas text-body">
+    <div className="page-canvas min-h-screen text-body">
       <HeaderNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {menuOpen && <HeaderMobileMenu close={() => setMenuOpen(false)} />}
       <main>
@@ -168,16 +169,15 @@ function Button({ children, tone = 'primary', className = '', href = '#', ...pro
 
 function HeaderNav({ menuOpen, setMenuOpen }) {
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/60 bg-canvas/55 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 border-b border-transparent bg-transparent backdrop-blur-xl">
       <Wrap className="grid min-h-[92px] grid-cols-[1fr_auto_1fr] items-center gap-5 py-4">
-        <a href="#" className="flex min-w-[210px] flex-col leading-none no-underline">
-          <span className="font-serif text-2xl font-semibold text-primary">First Eat Right</span>
-          <span className="mt-1 text-[9.5px] font-semibold uppercase tracking-[0.22em] text-gold">Clinical Dietetics</span>
+        <a href="#" className="flex min-w-[210px] items-center no-underline">
+          <img src={logoImage} alt="First Eat Right" className="h-14 w-auto object-contain" />
         </a>
 
-        <div className="hidden items-center rounded-full border border-border/60 bg-surface/45 px-2 py-2 shadow-lg shadow-primary/5 backdrop-blur-xl md:flex">
+        <div className="hidden items-center rounded-full border border-border/60 bg-surface/45 px-2 py-1 shadow-lg shadow-primary/5 backdrop-blur-xl md:flex">
           {navLinks.map(([label, href]) => (
-            <a key={label} className="rounded-full px-5 py-2.5 text-[15px] font-semibold text-primary transition hover:bg-canvas hover:text-deep" href={href}>
+            <a key={label} className="rounded-full px-10 py-2.5 text-[13px] font-semibold text-primary transition hover:bg-canvas hover:text-deep" href={href}>
               {label}
             </a>
           ))}
@@ -185,11 +185,11 @@ function HeaderNav({ menuOpen, setMenuOpen }) {
 
         <div className="hidden items-center justify-end gap-5 md:flex">
           {actionLinks.map(([label, href]) => (
-            <a key={label} className="text-[15px] font-bold text-deep transition hover:text-copper" href={href}>
+            <a key={label} className="text-[13px] font-bold text-deep transition hover:text-copper" href={href}>
               {label}
             </a>
           ))}
-          <Button href="#pricing" className="rounded-2xl px-6 py-4 text-[15px] font-bold">Book ₹1,000</Button>
+          <Button href="#pricing" className="rounded-2xl px-2 py-1 text-center text-[13px] font-bold">Book Consultation</Button>
         </div>
 
         <button className="col-start-3 ml-auto flex p-2 md:hidden" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
@@ -242,7 +242,7 @@ function Nav({ menuOpen, setMenuOpen }) {
         </div>
         <div className="hidden items-center gap-4 md:flex">
           <a className="text-sm font-semibold text-deep" href="#">WhatsApp</a>
-          <Button href="#pricing" className="px-5 py-2.5 text-sm">Book ₹1,000</Button>
+          <Button href="#pricing" className="px-5 py-2.5 text-sm">Book Consultation</Button>
         </div>
         <button className="flex p-2 md:hidden" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -263,11 +263,11 @@ function MobileMenu({ close }) {
 
 function Hero() {
   return (
-    <Section className="overflow-hidden bg-gradient-to-b from-canvas from-70% to-[#eadbb8] !pt-0 md:!pt-0">
-      <Wrap className="grid items-center gap-12 md:grid-cols-[1.05fr_.95fr]">
-        <div className="hero-anim">
-          <h1 className="mb-6 font-serif text-[clamp(34px,5.2vw,60px)] leading-[1.04] text-primary">Reverse the numbers your doctor is worried about. <em className="text-brand">With food.</em></h1>
-          <p className="mb-7 max-w-[54ch] text-[clamp(16px,1.7vw,19px)] leading-8">Dr. Nafeesa Imteyaz treats diabetes, PCOS, thyroid, kidney, heart and 10 other conditions with <b className="font-semibold text-primary">30 years of hospital-grade science</b> - built on ordinary Indian food. <b className="font-semibold text-primary">No supplements. No detox. No injections. Ever.</b></p>
+    <Section className="hero-background overflow-hidden !pt-6 md:!pt-8">
+      <Wrap className="grid items-center gap-8 md:grid-cols-[1.05fr_.95fr]">
+        <div className="hero-anim" >
+          <h1 className="mb-6 font-serif text-[clamp(34px,5.2vw,55px)] leading-[1.04] text-primary">Reverse the numbers your doctor is worried about. <em className="text-deep">With food.</em></h1>
+          <p className="mb-7 max-w-[54ch] text-[clamp(16px,1.7vw,15px)] leading-8">Dr. Nafeesa Imteyaz treats diabetes, PCOS, thyroid, kidney, heart and 10 other conditions with <b className="font-semibold text-primary">30 years of hospital-grade science</b> - built on ordinary Indian food. <b className="font-semibold text-primary">No supplements. No detox. No injections. Ever.</b></p>
           <div className="mb-7 flex flex-wrap gap-2.5">
             {['Diabetes', 'PCOS', 'Thyroid', 'Kidney', 'Heart', 'Weight'].map((item) => <a className="rounded-full border border-border bg-surface px-3.5 py-2 text-sm font-medium hover:border-brand hover:text-brand" href="#conditions" key={item}>{item}</a>)}
             <a className="rounded-full border border-mint bg-sage px-3.5 py-2 text-sm font-semibold text-deep" href="#conditions">All 15</a>
@@ -282,7 +282,7 @@ function Hero() {
             <span><b className="text-primary">Video</b> and in-clinic</span>
           </div>
         </div>
-        <div className="reveal relative aspect-[4/5] overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-sage to-warm">
+        <div className="reveal relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-sage to-warm md:max-w-[420px] lg:max-w-[460px] md:justify-self-end md:self-center">
           <img className="h-full w-full object-cover object-center" src={portraitImage} alt="Dr. Nafeesa Imteyaz" />
           <div className="absolute right-4 top-4 rounded-full border border-gold-soft bg-surface px-3 py-1.5 text-xs font-semibold text-gold">Clinical lead</div>
         </div>

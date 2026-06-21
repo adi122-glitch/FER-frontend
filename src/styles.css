@@ -27,9 +27,34 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-canvas);
+  min-height: 100vh;
+  background-color: #ece3cc;
+  background-image:
+    radial-gradient(circle at 50% 14%, rgba(236, 227, 204, 0.98) 0%, rgba(231, 220, 194, 0.95) 22%, rgba(221, 232, 213, 0.88) 100%),
+    linear-gradient(180deg, #ece3cc 0%, #e7dcc2 34%, #dde8d5 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-body);
   font-family: var(--font-sans);
+}
+
+.page-canvas {
+  min-height: 100vh;
+  background-color: #ece3cc;
+  background-image:
+    radial-gradient(circle at 50% 14%, rgba(236, 227, 204, 0.98) 0%, rgba(231, 220, 194, 0.95) 22%, rgba(221, 232, 213, 0.88) 100%),
+    linear-gradient(180deg, #ece3cc 0%, #e7dcc2 34%, #dde8d5 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-background {
+  background-color: #ece3cc;
+  background-image:
+    radial-gradient(circle at 50% 40%, rgba(236, 227, 204, 0.94) 0%, rgba(231, 220, 194, 0.92) 24%, rgba(221, 232, 213, 0.92) 100%),
+    linear-gradient(135deg, #ece3cc 0%, #e7dcc2 48%, #dde8d5 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 button,
