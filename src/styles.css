@@ -3,22 +3,22 @@
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: "Newsreader", Georgia, serif;
-  --color-canvas: #f2e7cb;
-  --color-surface: #fff9ec;
-  --color-alt: #eadbb8;
-  --color-warm: #f7d99b;
-  --color-sage: #e1ead8;
-  --color-primary: #24301f;
-  --color-body: #394235;
-  --color-muted: #746d5d;
-  --color-deep: #4f7047;
-  --color-brand: #94b38a;
-  --color-mint: #c9d9be;
+  --color-canvas: #f4eedf;
+  --color-surface: #fbf6ea;
+  --color-alt: #f4eedf;
+  --color-warm: #f4eedf;
+  --color-sage: #f4eedf;
+  --color-primary: #162416;
+  --color-body: #343d31;
+  --color-muted: #6f6a5d;
+  --color-deep: #094217;
+  --color-brand: #094217;
+  --color-mint: #fbf6ea;
   --color-gold: #eebf43;
   --color-gold-soft: #f5d681;
   --color-copper: #c54f2d;
-  --color-border: #dfcfaa;
-  --color-border-strong: #bfa978;
+  --color-border: #ddd0b8;
+  --color-border-strong: #c8b99d;
 }
 
 html {
@@ -28,33 +28,36 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #ece3cc;
-  background-image:
-    radial-gradient(circle at 50% 14%, rgba(236, 227, 204, 0.98) 0%, rgba(231, 220, 194, 0.95) 22%, rgba(221, 232, 213, 0.88) 100%),
-    linear-gradient(180deg, #ece3cc 0%, #e7dcc2 34%, #dde8d5 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #f4eedf;
   color: var(--color-body);
   font-family: var(--font-sans);
 }
 
 .page-canvas {
   min-height: 100vh;
-  background-color: #ece3cc;
-  background-image:
-    radial-gradient(circle at 50% 14%, rgba(236, 227, 204, 0.98) 0%, rgba(231, 220, 194, 0.95) 22%, rgba(221, 232, 213, 0.88) 100%),
-    linear-gradient(180deg, #ece3cc 0%, #e7dcc2 34%, #dde8d5 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #f4eedf;
 }
 
 .hero-background {
-  background-color: #ece3cc;
-  background-image:
-    radial-gradient(circle at 50% 40%, rgba(236, 227, 204, 0.94) 0%, rgba(231, 220, 194, 0.92) 24%, rgba(221, 232, 213, 0.92) 100%),
-    linear-gradient(135deg, #ece3cc 0%, #e7dcc2 48%, #dde8d5 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+  min-height: calc(100vh - 24px);
+  padding-top: 108px !important;
+  background-color: #f4eedf;
+}
+
+@media (min-width: 768px) {
+  .hero-background {
+    padding-top: 126px !important;
+  }
+}
+
+.floating-nav {
+  max-width: 1040px !important;
+  background: rgba(251, 246, 234, 0.74);
+  box-shadow: 0 14px 38px rgba(22, 36, 22, 0.09);
+}
+
+.hero-photo-shadow {
+  box-shadow: 0 32px 90px rgba(9, 66, 23, 0.18);
 }
 
 button,

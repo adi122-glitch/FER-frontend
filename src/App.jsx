@@ -156,8 +156,8 @@ function SectionHead({ eyebrow, title, text, center = false }) {
 
 function Button({ children, tone = 'primary', className = '', href = '#', ...props }) {
   const tones = {
-    primary: 'border-deep bg-deep text-canvas hover:bg-brand',
-    ghost: 'border-border-strong text-primary hover:border-primary hover:bg-primary hover:text-canvas',
+    primary: 'border-deep bg-deep text-canvas shadow-lg shadow-deep/15 hover:bg-brand',
+    ghost: 'border-border-strong bg-surface/35 text-primary hover:border-primary hover:bg-primary hover:text-canvas',
     gold: 'border-gold bg-gold text-primary hover:brightness-105',
   };
   return (
@@ -169,30 +169,30 @@ function Button({ children, tone = 'primary', className = '', href = '#', ...pro
 
 function HeaderNav({ menuOpen, setMenuOpen }) {
   return (
-    <nav className="sticky top-0 z-50 border-b border-transparent bg-transparent backdrop-blur-xl">
-      <Wrap className="grid min-h-[92px] grid-cols-[1fr_auto_1fr] items-center gap-5 py-4">
-        <a href="#" className="flex min-w-[210px] items-center no-underline">
-          <img src={logoImage} alt="First Eat Right" className="h-14 w-auto object-contain" />
+    <nav className="fixed inset-x-0 top-4 z-50 px-4">
+      <Wrap className="floating-nav grid min-h-[58px] max-w-[1040px] grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border border-white/55 px-4 py-1 backdrop-blur-2xl md:px-5">
+        <a href="#" className="flex items-center no-underline">
+          <img src={logoImage} alt="First Eat Right" className="h-10 w-auto object-contain md:h-11" />
         </a>
 
-        <div className="hidden items-center rounded-full border border-border/60 bg-surface/45 px-2 py-1 shadow-lg shadow-primary/5 backdrop-blur-xl md:flex">
+        <div className="hidden items-center justify-center gap-1 md:flex">
           {navLinks.map(([label, href]) => (
-            <a key={label} className="rounded-full px-10 py-2.5 text-[13px] font-semibold text-primary transition hover:bg-canvas hover:text-deep" href={href}>
+            <a key={label} className="rounded-full px-4 py-1.5 text-[13px] font-semibold text-primary/80 transition hover:bg-surface hover:text-deep lg:px-5" href={href}>
               {label}
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center justify-end gap-5 md:flex">
+        <div className="hidden items-center justify-end gap-3 md:flex">
           {actionLinks.map(([label, href]) => (
             <a key={label} className="text-[13px] font-bold text-deep transition hover:text-copper" href={href}>
               {label}
             </a>
           ))}
-          <Button href="#pricing" className="rounded-2xl px-2 py-1 text-center text-[13px] font-bold">Book Consultation</Button>
+          <Button href="#pricing" className="rounded-full px-4 py-2.5 text-center text-[13px] font-bold">Book Consultation</Button>
         </div>
 
-        <button className="col-start-3 ml-auto flex p-2 md:hidden" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="ml-auto flex rounded-full border border-border/70 bg-surface/60 p-2 text-primary md:hidden" aria-label="Menu" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </Wrap>
@@ -202,7 +202,7 @@ function HeaderNav({ menuOpen, setMenuOpen }) {
 
 function HeaderMobileMenu({ close }) {
   return (
-    <div className="border-b border-border bg-canvas px-6 py-3 md:hidden">
+    <div className="fixed inset-x-4 top-[84px] z-40 rounded-3xl border border-white/70 bg-surface/90 px-6 py-3 shadow-2xl shadow-primary/15 backdrop-blur-xl md:hidden">
       {navLinks.map(([label, href]) => (
         <a key={label} onClick={close} className="block border-b border-border py-3 font-medium text-primary" href={href}>
           {label}
@@ -263,28 +263,40 @@ function MobileMenu({ close }) {
 
 function Hero() {
   return (
-    <Section className="hero-background overflow-hidden !pt-6 md:!pt-8">
-      <Wrap className="grid items-center gap-8 md:grid-cols-[1.05fr_.95fr]">
-        <div className="hero-anim" >
-          <h1 className="mb-6 font-serif text-[clamp(34px,5.2vw,55px)] leading-[1.04] text-primary">Reverse the numbers your doctor is worried about. <em className="text-deep">With food.</em></h1>
-          <p className="mb-7 max-w-[54ch] text-[clamp(16px,1.7vw,15px)] leading-8">Dr. Nafeesa Imteyaz treats diabetes, PCOS, thyroid, kidney, heart and 10 other conditions with <b className="font-semibold text-primary">30 years of hospital-grade science</b> - built on ordinary Indian food. <b className="font-semibold text-primary">No supplements. No detox. No injections. Ever.</b></p>
-          <div className="mb-7 flex flex-wrap gap-2.5">
-            {['Diabetes', 'PCOS', 'Thyroid', 'Kidney', 'Heart', 'Weight'].map((item) => <a className="rounded-full border border-border bg-surface px-3.5 py-2 text-sm font-medium hover:border-brand hover:text-brand" href="#conditions" key={item}>{item}</a>)}
-            <a className="rounded-full border border-mint bg-sage px-3.5 py-2 text-sm font-semibold text-deep" href="#conditions">All 15</a>
+    <Section className="hero-background overflow-hidden !pb-14 !pt-32 md:!pb-20 md:!pt-36">
+      <Wrap className="grid items-center gap-10 md:grid-cols-[minmax(0,1.02fr)_minmax(380px,.88fr)] lg:gap-16">
+        <div className="hero-anim max-w-[710px]">
+          <div className="mb-6 inline-flex items-center gap-3 border-l-2 border-gold pl-4 text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Hospital-grade medical nutrition
           </div>
-          <div className="mb-7 flex flex-wrap gap-3.5">
+          <h1 className="mb-7 font-serif text-[clamp(40px,6vw,76px)] leading-[0.96] text-primary">Reverse the numbers your doctor is worried about.</h1>
+          <p className="mb-8 max-w-[55ch] text-[clamp(17px,1.55vw,20px)] leading-9 text-body">Dr. Nafeesa Imteyaz treats diabetes, PCOS, thyroid, kidney, heart and 10 other conditions with <b className="font-semibold text-primary">30 years of hospital-grade science</b>, built on ordinary Indian food. <b className="font-semibold text-primary">No supplements. No detox. No injections.</b></p>
+          <div className="mb-8 flex flex-wrap items-center gap-3.5">
             <Button href="#pricing">Book consultation</Button>
             <Button tone="ghost" href="#naf">Meet Dr. Nafeesa</Button>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-            <span className="flex items-center gap-1.5"><Star size={16} className="fill-gold text-gold" /> <b className="text-primary">4.9</b> Google</span>
-            <span><b className="text-primary">3,671</b> Practo recommendations</span>
-            <span><b className="text-primary">Video</b> and in-clinic</span>
+          <div className="hidden max-w-[620px] grid-cols-2 gap-x-8 gap-y-4 border-y border-border/80 py-5 text-sm md:grid md:grid-cols-4">
+            <span><b className="block font-serif text-2xl font-semibold text-primary">30</b> years</span>
+            <span><b className="block font-serif text-2xl font-semibold text-primary">30k+</b> patients</span>
+            <span><b className="flex items-center gap-1 font-serif text-2xl font-semibold text-primary"><Star size={16} className="fill-gold text-gold" />4.9</b> Google</span>
+            <span><b className="block font-serif text-2xl font-semibold text-primary">3,671</b> Practo</span>
           </div>
         </div>
-        <div className="reveal relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-sage to-warm md:max-w-[420px] lg:max-w-[460px] md:justify-self-end md:self-center">
-          <img className="h-full w-full object-cover object-center" src={portraitImage} alt="Dr. Nafeesa Imteyaz" />
-          <div className="absolute right-4 top-4 rounded-full border border-gold-soft bg-surface px-3 py-1.5 text-xs font-semibold text-gold">Clinical lead</div>
+        <div className="reveal relative w-full md:justify-self-end">
+          <div className="hero-photo-shadow relative aspect-[4/5] overflow-hidden rounded-[28px] bg-primary md:aspect-[4/4.85]">
+            <img className="h-full w-full object-cover object-center" src={portraitImage} alt="Dr. Nafeesa Imteyaz" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/78 via-primary/18 to-transparent p-6 text-canvas">
+              <div className="text-xs font-bold uppercase tracking-[0.18em] text-gold-soft">Clinical lead</div>
+              <div className="mt-1 font-serif text-2xl">Dr. Nafeesa Imteyaz</div>
+            </div>
+          </div>
+          <div className="absolute -left-5 top-7 hidden w-[170px] border border-white/70 bg-surface/82 p-4 shadow-xl shadow-primary/10 backdrop-blur-xl lg:block">
+            <div className="font-serif text-[34px] leading-none text-deep">15</div>
+            <div className="mt-1 text-xs font-semibold uppercase tracking-[0.13em] text-muted">conditions treated with food-first protocols</div>
+          </div>
+          <div className="absolute -right-4 bottom-8 hidden max-w-[210px] rounded-2xl bg-deep p-4 text-sm font-semibold leading-5 text-canvas shadow-xl shadow-deep/20 md:block">
+            Video and in-clinic consultations across India and abroad.
+          </div>
         </div>
       </Wrap>
     </Section>
@@ -421,7 +433,7 @@ function Videos() {
         <SectionHead center eyebrow="Hear it from them" title="Patient stories, unscripted." />
         <div className="reveal grid grid-cols-2 gap-4 md:grid-cols-4">
           {['Diabetes reversal - off two medications', 'PCOS - natural conception story', '22 kg lost, kept off for 2 years', 'Thyroid & energy, fully restored'].map((caption) => (
-            <button key={caption} className="relative flex aspect-[9/13] items-end overflow-hidden rounded-2xl bg-gradient-to-br from-[#4f7047] to-[#94b38a] text-left">
+            <button key={caption} className="relative flex aspect-[9/13] items-end overflow-hidden rounded-2xl bg-deep text-left">
               <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-canvas/90 text-deep transition hover:scale-110"><Play size={24} fill="currentColor" /></span>
               <span className="relative z-10 w-full bg-gradient-to-b from-transparent to-black/60 p-4 text-sm font-semibold leading-5 text-[#fff3d7]">{caption}</span>
             </button>
